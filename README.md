@@ -4,7 +4,7 @@ Last week a friend planted a seed of doubt in my mind! How do we write an automa
 
 Well, I started raising questions about the problem and its subproblems:
 * How does a bot detector works?
-  * Repeated input values?
+  * Repeated/predictable input values?
   * Looking at HTTP metadata like its headers `User-Agent`?
   * Decting bot behavior like typing speed, lack of mouse movement?
   * Noticing a lot of actions from a single actor? (same IP/user agent)
