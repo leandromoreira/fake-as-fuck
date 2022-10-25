@@ -67,6 +67,7 @@ It's been Essentially when you're automating a web tsak (like going to site www.
 
 I never learn, I'm always reinventing the wheel and then I got bored, search for what I was building to find out 💡 someone did a 1000x better solution than mine 🤡!
 
+# The vicious, maybe necessary, think->experiment->do->use loop
 ```mermaid
 graph TD;
     step1([Finding a problem X])-->step2[Thinking about X];
