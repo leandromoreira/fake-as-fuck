@@ -1,5 +1,27 @@
 # Reinventing the wheel while learning about bot detection
 
+```mermaid
+graph TD;
+    step1([Finding a problem X])-->step2[Thinking about X];
+    step2-->step2;
+    
+    subgraph fun_loop
+    step2-->step3(Magnifying possible subproblems to X)
+    step3-->step2;
+    step3-->step4[[Writing code to tackle a subproblem of X]]
+    step4-->step5(Getting excited)
+    step5-->step3;
+    end
+    
+    step5-. Eventually .->step6[[Realize someone probably won this batle already]]
+    
+    subgraph wisdom_moment
+    step6-- Searching on -->step7[(Internet)]
+    step7-- Finding out a 1000x better solution available -->step6
+    end
+    
+```
+
 Last week a friend planted a seed of doubt in my mind! How do we write an automated browser task without getting noticed by a bot detector?
 
 Well, I started raising questions about the problem and its subproblems:
@@ -176,26 +198,3 @@ for i in `seq 1 1000`; do sleep $((30+RANDOM % (300-30))) && python3.10 usage.py
 I'm always reinventing the wheel and then I got bored, search for what I was building to find out 💡 someone did a 1000x better solution than mine 🤡!
 
 PS: if you want to run that on your computer you must have `python3` and `pip3.10 install undetected-chromedriver Faker`.
-
-# The vicious, maybe necessary, learning loop
-```mermaid
-graph TD;
-    step1([Finding a problem X])-->step2[Thinking about X];
-    step2-->step2;
-    
-    subgraph fun_loop
-    step2-->step3(Magnifying possible subproblems to X)
-    step3-->step2;
-    step3-->step4[[Writing code to tackle a subproblem of X]]
-    step4-->step5(Getting excited)
-    step5-->step3;
-    end
-    
-    step5-. Eventually .->step6[[Realize someone probably won this batle already]]
-    
-    subgraph wisdom_moment
-    step6-- Searching on -->step7[(Internet)]
-    step7-- Finding out a 1000x better solution available -->step6
-    end
-    
-```
