@@ -38,12 +38,12 @@ name_provider = {
 def generate_name():
   lucky_factor = random.randint(1,100)
   name_country = "us" # 95% of time we'll use "us"
-  if lucky_factor >= 95: # 5% of time we'll use "br"
+  if lucky_factor > 95: # 5% of time we'll use "br"
     name_country = "br"
     
   lucky_factor = random.randint(1,100)
   middle_name = "" # 80% of time we won't use a middle name
-  if lucky_factor >= 20:  # 20% of time we'll have a middle name
+  if lucky_factor > 80:  # 20% of time we'll have a middle name
     middle_name = random.choice(name_provider[name_country]["middle_names"])
   
   first_name = random.choice(name_provider[name_country]["first_names"])
@@ -51,11 +51,11 @@ def generate_name():
   full_name = f"{first_name} {middle_name} {last_name}"
   
   lucky_factor = random.randint(1,100)
-  if lucky_factor >= 5: # 5% of time we'll use lowercase
+  if lucky_factor > 95: # 5% of time we'll use lowercase
     full_name = full_name.lower()
     
   lucky_factor = random.randint(1,100)
-  if lucky_factor >= 2: # 2% of time we'll drop the last character
+  if lucky_factor > 98: # 2% of time we'll drop the last character
     full_name = full_name[:-1]
     
   return full_name
