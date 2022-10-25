@@ -4,12 +4,13 @@ Last week a friend planted a seed of doubt in my mind! How do we write an automa
 
 Well, I started raising questions about the problem and its subproblems:
 * How does a bot detector works?
+  * Repeated input values?
   * Looking at HTTP metadata like its headers `User-Agent`?
   * Decting bot behavior like typing speed, lack of mouse movement?
   * Noticing a lot of actions from a single actor? (same IP/user agent)
   * And so on...
 
-Once I had thought about a bunch of subproblems I wrote code trying to solve them. 
+Once I had thought about a bunch of subproblems, I wrote code trying to solve them. 
 
 For instance I wrote a small function to randomly generate names based on some rules:
 ```python
