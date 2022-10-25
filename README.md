@@ -12,7 +12,7 @@ Well, I started raising questions about the problem and its subproblems:
 
 Once I had thought about a bunch of subproblems, I wrote code trying to solve them. 
 
-For repeated input values, I wrote a small function to randomly generate names based on some arbibrary rules:
+To fight the predictability on the input values, I wrote a small function to randomly generate data based on some arbibrary rules (for instance name):
 ```python
 us_first_names  = ["Alice", "Bob"]
 us_middle_names = ["L.", "N."]
