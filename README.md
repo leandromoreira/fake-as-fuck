@@ -14,6 +14,8 @@ Once I had thought about a bunch of subproblems, I started writing code to solve
 
 To fight the predictability on the input values, I wrote a small function to randomly generate data based on some arbibrary rules (for instance name):
 ```python
+import random
+
 us_first_names  = ["Alice", "Bob"]
 us_middle_names = ["L.", "N."]
 us_last_names   = ["Smith", "Johnson"]
@@ -44,11 +46,11 @@ def generate_name():
   lucky_factor = random.randint(1,100)
   middle_name = "" # 80% of time we won't use a middle name
   if lucky_factor > 80:  # 20% of time we'll have a middle name
-    middle_name = random.choice(name_provider[name_country]["middle_names"])
+    middle_name = random.choice(name_provider[name_country]["middle_names"]) + " "
   
   first_name = random.choice(name_provider[name_country]["first_names"])
   last_name = random.choice(name_provider[name_country]["last_names"])
-  full_name = f"{first_name} {middle_name} {last_name}"
+  full_name = f"{first_name} {middle_name}{last_name}"
   
   lucky_factor = random.randint(1,100)
   if lucky_factor > 95: # 5% of time we'll use lowercase
@@ -59,6 +61,12 @@ def generate_name():
     full_name = full_name[:-1]
     
   return full_name
+```
+
+I run a quick test to see it working
+
+```python
+[generate_name() for _ in range(100)]
 ```
 
 > By no means I'm a anti bot specialist, I'm just describing and reflecting my journey during this endeavour.
