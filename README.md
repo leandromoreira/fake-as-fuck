@@ -12,7 +12,7 @@ Well, I started raising questions about the problem and its subproblems:
 
 Once I had thought about a bunch of subproblems, I wrote code trying to solve them. 
 
-For instance I wrote a small function to randomly generate names based on some rules:
+For repeated input values, I wrote a small function to randomly generate names based on some arbibrary rules:
 ```python
 us_first_names  = ["Alice", "Bob"]
 us_middle_names = ["L.", "N."]
@@ -33,10 +33,6 @@ name_provider = {
     "middle_names": br_middle_names,
     "last_names": br_last_names,
   }
-}
-
-  "lower_case_percentual": 5,
-  "mispelling_percentual": 2,
 }
 
 def generate_name():
