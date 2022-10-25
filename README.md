@@ -63,7 +63,7 @@ def generate_name():
   return full_name
 ```
 
-I decided to use selinium so changing the `User-Agent` and simulating a human like typing experience would be possible:
+I decided to use selenium so changing the `User-Agent` and simulating a human-like typing experience would be possible:
 
 ```python
 from selenium import webdriver
@@ -122,12 +122,12 @@ I ran proudly my lil' monster and it didn't pass at all 😞! It actually scored
 * binary patch `chromedrive` vim %s/cdc_/lhe_/g
 * and so on.
 
-[The more I see, the less I know](https://youtu.be/yuFI5KSPAt4?t=189)! Long story short, there are solutions (obvisouly) to aid you in journey:
+[The more I see, the less I know](https://youtu.be/yuFI5KSPAt4?t=189)! Long story short, there are solutions (obviously) to aid you in your journey:
 * provisioning the selenium/chrome driver https://github.com/ultrafunkamsterdam/undetected-chromedriver
 * fake data providers https://github.com/joke2k/faker
 * ...
 
-In the end I passed the bot detectors (_Standing on the shoulders of giants_) and build a pretty simple (IMO) and useful thin layer to speed up my automations:
+In the end, I passed the bot detectors (_Standing on the shoulders of giants_) and build a pretty simple (IMO) and useful thin layer to speed up my automation:
 
 ```python
 import runner
