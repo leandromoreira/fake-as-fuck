@@ -3,16 +3,16 @@
 Last week a friend planted a seed of doubt in my mind! How do we write an automated browser task without getting noticed by a bot detector?
 
 Well, I started raising questions about the problem and its subproblems:
-* How does a bot detector works?
-  * Identifying repeated/predictable input values?
-  * Looking at HTTP metadata like headers `User-Agent`?
-  * Detecting bot behavior by traits such as typing speed, lack of mouse movement, and etc?
-  * Noticing a lot of actions from a single actor? (same IP/user agent)
+* How does a bot detector work?
+  * Identifying repeated/predictable input values.
+  * Looking at HTTP metadata like headers `User-Agent`.
+  * Detecting bot behavior by traits such as typing speed, lack of mouse movement, etc.
+  * Noticing a lot of actions from a single actor (same IP/user agent).
   * And so on...
 
 Once I had thought about a bunch of subproblems, I started writing code to solve each one of them. 
 
-To fight the predictability on the input values, I wrote a small function to randomly generate data based on some arbibrary rules (for instance name):
+To fight the predictability of the input values, I wrote small functions to randomly generate data based on some arbitrary rules (for instance name):
 ```python
 import random
 
