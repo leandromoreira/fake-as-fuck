@@ -69,6 +69,19 @@ I run a quick test to see it working
 [generate_name() for _ in range(100)]
 ```
 
+I could keep adding extra layers to it but I decided to move on.
+
+```python
+def failure(lucky, str):
+    if lucky < 33:
+        str = str[:-1] # drop last char
+    elif lucky < 66:
+        str = str[:len(str)//2] + str[len(str)//2] + str[len(str)//2:] # dup mid char
+    else
+        str = str + " " # add extra trailing space
+    return str
+``` 
+
 > By no means I'm a anti bot specialist, I'm just describing and reflecting my journey during this endeavour.
 
 It's been Essentially when you're automating a web tsak (like going to site www.example.com, log in, enter a query, submit it, and click on the first results) 
