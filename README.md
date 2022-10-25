@@ -158,7 +158,7 @@ def main():
     runner_instance.run()
 
     human_delay.delay(3000, 4000) # seconds to take a printscreen
-    driver.get_screenshot_as_file("page.png")
+    driver.get_screenshot_as_file(f"{random_name}-page.png")
 
     print('\a') # beebing just for fun
     print('\a')
@@ -167,15 +167,15 @@ if __name__ == "__main__":
     main()
 ```
 
-With that I could finally run my automation 1000 times, randomly spreading the "users" between 30 seconds and 5 minutes.
+Now I could finally run my automation 1000 times, randomly spreading the "users" between 30 seconds and 5 minutes.
 
 ```bash
 for i in `seq 1 1000`; do sleep $((30+RANDOM % (300-30))) && python3.10 usage.py ; done
 ```
 
-I never learn, I'm always reinventing the wheel and then I got bored, search for what I was building to find out 💡 someone did a 1000x better solution than mine 🤡!
+I'm always reinventing the wheel and then I got bored, search for what I was building to find out 💡 someone did a 1000x better solution than mine 🤡!
 
-PS: if you want to run that on your computer you must have `python3` and `pip3.10 install undetected-chromedriver Faker`, I tested that on my mac.
+PS: if you want to run that on your computer you must have `python3` and `pip3.10 install undetected-chromedriver Faker`.
 
 # The vicious, maybe necessary, learning loop
 ```mermaid
