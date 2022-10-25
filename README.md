@@ -1,6 +1,71 @@
-# Reinventing the wheel while fighting bot dection
+# Reinventing the wheel while learning about bot detection
 
 Last week a friend planted a seed of doubt in my mind! How do we write an automated browser task without getting noticed by a bot detector?
+
+Well, I started raising questions about the problem and its subproblems:
+* How does a bot detector works?
+  * Looking at HTTP metadata like its headers `User-Agent`?
+  * Decting bot behavior like typing speed, lack of mouse movement?
+  * Noticing a lot of actions from a single actor? (same IP/user agent)
+  * And so on...
+
+Once I had thought about a bunch of subproblems I wrote code trying to solve them. 
+
+For instance I wrote a small function to randomly generate names based on some rules:
+```python
+us_first_names  = ["Alice", "Bob"]
+us_middle_names = ["L.", "N."]
+us_last_names   = ["Smith", "Johnson"]
+
+br_first_names  = ["Maria", "Ana"]
+br_middle_names = ["Paula", "A."]
+br_last_names   = ["Oliveira", "Santos"]
+
+name_provider = {
+ "us": {
+    "first_names": us_first_names,
+    "middle_names": us_middle_names,
+    "last_names": us_last_names,
+  },
+   "br": {
+    "first_names": br_first_names,
+    "middle_names": br_middle_names,
+    "last_names": br_last_names,
+  }
+}
+
+  "lower_case_percentual": 5,
+  "mispelling_percentual": 2,
+}
+
+def generate_name():
+  lucky_factor = random.randint(1,100)
+  
+  name_country = "us"
+  if lucky_factor >= 95: # 5% of time we'll use "br"
+    name_country = "br"
+    
+  lucky_factor = random.randint(1,100)
+  middle_name = ""
+  if lucky_factor >= 20:  # 20% of time we'll have a middle name
+    middle_name = random.choice(name_provider[name_country]["middle_names"])
+  
+  first_name = random.choice(name_provider[name_country]["first_names"])
+  last_name = random.choice(name_provider[name_country]["last_names"])
+  full_name = f"{first_name} {middle_name} {last_name}"
+  
+  lucky_factor = random.randint(1,100)
+  if lucky_factor >= 5: # 5% of time we'll use lowercase
+    full_name = full_name.lower()
+    
+  lucky_factor = random.randint(1,100)
+  if lucky_factor >= 2: # 2% of time we'll drop the last character
+    full_name = full_name[:-1]
+    
+  return full_name
+
+
+```
 
 > By no means I'm a anti bot specialist, I'm just describing and reflecting my journey during this endeavour.
 
