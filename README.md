@@ -1,5 +1,7 @@
 # Reinventing the wheel while fighting bot dection
 
+Last week a friend of mine planted (without noticing) a doubt in my brain that got me hooked to study and learn! Essentially when you're automating a web tsak (like going to site www.example.com, log in, enter a query, submit it, and click on the first results) 
+
 I never learn, I always start by reinventing the wheel then I got bored and search for what I'm building and 💡 someone did that 1000x better than me 🤡!
 
 ```mermaid
