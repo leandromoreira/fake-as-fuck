@@ -10,7 +10,7 @@ Well, I started raising questions about the problem and its subproblems:
   * Noticing a lot of actions from a single actor? (same IP/user agent)
   * And so on...
 
-Once I had thought about a bunch of subproblems, I wrote code trying to solve them. 
+Once I had thought about a bunch of subproblems, I started writing code to solve each one of them. 
 
 To fight the predictability on the input values, I wrote a small function to randomly generate data based on some arbibrary rules (for instance name):
 ```python
