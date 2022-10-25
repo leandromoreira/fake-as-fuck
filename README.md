@@ -37,13 +37,12 @@ name_provider = {
 
 def generate_name():
   lucky_factor = random.randint(1,100)
-  
-  name_country = "us"
+  name_country = "us" # 95% of time we'll use "us"
   if lucky_factor >= 95: # 5% of time we'll use "br"
     name_country = "br"
     
   lucky_factor = random.randint(1,100)
-  middle_name = ""
+  middle_name = "" # 80% of time we won't use a middle name
   if lucky_factor >= 20:  # 20% of time we'll have a middle name
     middle_name = random.choice(name_provider[name_country]["middle_names"])
   
@@ -60,8 +59,6 @@ def generate_name():
     full_name = full_name[:-1]
     
   return full_name
-
-
 ```
 
 > By no means I'm a anti bot specialist, I'm just describing and reflecting my journey during this endeavour.
