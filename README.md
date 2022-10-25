@@ -1,27 +1,31 @@
 # Reinventing the wheel while fighting bot dection
 
-Last week a friend of mine planted (without noticing) a doubt in my brain that got me hooked to study and learn! Essentially when you're automating a web tsak (like going to site www.example.com, log in, enter a query, submit it, and click on the first results) 
+Last week a friend planted a seed of doubt in my mind! How do we write an automated browser task without getting noticed by a bot detector?
 
-I never learn, I always start by reinventing the wheel then I got bored and search for what I'm building and 💡 someone did that 1000x better than me 🤡!
+> By no means I'm a anti bot specialist, I'm just describing and reflecting my journey during this endeavour.
+
+It's been Essentially when you're automating a web tsak (like going to site www.example.com, log in, enter a query, submit it, and click on the first results) 
+
+I never learn, I'm always reinventing the wheel and then I got bored, search for what I was building to find out 💡 someone did a 1000x better solution than mine 🤡!
 
 ```mermaid
 graph TD;
-    step1([Stumble upon a problem X])-->step2[Think about X];
+    step1([Finding a problem X])-->step2[Thinking about X];
     step2-->step2;
     
     subgraph fun_loop
-    step2-->step3(Magnify many possible sub problems to X)
+    step2-->step3(Magnifying possible subproblems to X)
     step3-->step2;
-    step3-->step4[[Write some code to tackle a sub problem of X]]
-    step4-->step5(Get excited)
+    step3-->step4[[Writing code to tackle a subproblem of X]]
+    step4-->step5(Getting excited)
     step5-->step3;
     end
     
-    step5-->step6[[Realize someone probably won this batle already :clown:]]
+    step5-. Eventually .->step6[[Realize someone probably won this batle already]]
     
     subgraph wisdom_moment
-    step6-- Search on -->step7[(Internet)]
-    step7-- There's a 1000x better solution available :clown: -->step6
+    step6-- Searching on -->step7[(Internet)]
+    step7-- Finding out a 1000x better solution available -->step6
     end
     
 ```
