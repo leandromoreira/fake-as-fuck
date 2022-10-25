@@ -177,7 +177,7 @@ I never learn, I'm always reinventing the wheel and then I got bored, search for
 
 PS: if you want to run that on your computer you must have `python3` and `pip3.10 install undetected-chromedriver Faker`, I tested that on my mac.
 
-# The vicious, maybe necessary, think->experiment->do->use loop
+# The vicious, maybe necessary, learning loop
 ```mermaid
 graph TD;
     step1([Finding a problem X])-->step2[Thinking about X];
