@@ -63,30 +63,119 @@ def generate_name():
   return full_name
 ```
 
-I run a quick test to see it working
+I decided to use selinium so changing the `User-Agent` and simulating a human like typing experience would be possible:
 
 ```python
-[generate_name() for _ in range(100)]
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+
+import random
+import time
+
+# adding a different user-agent and proxy
+opts = Options()
+opts.add_argument(f"user-agent={mylib.generate_user_agent()}")
+opts.add_argument(f"--proxy-server={mylib.fetch_random_proxy()}")
+
+driver = webdriver.Chrome(chrome_options=opts)
+
+def average_people_typing():
+    time.sleep(random.randint(60,200)/1000) # delaying ~= from 60ms to 220ms
+
+input_element = driver.find_element(By.NAME, "q")
+input_element.click()
+input_element.clear()
+
+full_name = mylib.generate_name()
+for chr in full_name:
+  average_people_typing()
+  input_element.send_keys(chr)
+
 ```
 
-I could keep adding extra layers to it but I decided to move on.
+Yeah, I didn't show you but I wrote lots of functions, things like a proxy fetcher:
 
 ```python
-def failure(lucky, str):
-    if lucky < 33:
-        str = str[:-1] # drop last char
-    elif lucky < 66:
-        str = str[:len(str)//2] + str[len(str)//2] + str[len(str)//2:] # dup mid char
-    else
-        str = str + " " # add extra trailing space
-    return str
-``` 
+from urllib.request import urlopen
+import random
 
-> By no means I'm a anti bot specialist, I'm just describing and reflecting my journey during this endeavour.
+def fetch_random_proxy():
+    proxies_source_url ="raw.githubusercontent.com"
+    proxies_source_path ="/TheSpeedX/SOCKS-List/master/http.txt"
+    response = urlopen(f"https://{proxies_source_url}{proxies_source_path}")
+    proxies_list = response.read().decode('utf-8').split("\n")
 
-It's been Essentially when you're automating a web tsak (like going to site www.example.com, log in, enter a query, submit it, and click on the first results) 
+    return random.choice(proxies_list)
+```
+
+Anyway, I knew it works but does it fools a bot detector? How can I test if my code can bypass a detector? It turns out that there are sites where you can test your code against real bot detectors:
+
+* https://bot.sannysoft.com/
+* https://bot.incolumitas.com/
+
+I ran proudly my lil' monster and it didn't pass at all 😞! It actually scored so low that the sites were certain that it was a bot. I started researching on the Internet what people were doing:
+
+* https://stackoverflow.com/questions/33225947/can-a-website-detect-when-you-are-using-selenium-with-chromedriver
+* https://github.com/soumilshah1995/Preventing-Selenium-from-being-detected/blob/main/master.py
+* https://newbedev.com/selenium-webdriver-modifying-navigator-webdriver-flag-to-prevent-selenium-detection
+* binary patch `chromedrive` vim %s/cdc_/lhe_/g
+* and so on.
+
+[The more I see, the less I know](https://youtu.be/yuFI5KSPAt4?t=189)! Long story short, there are solutions (obvisouly) to aid you in journey:
+* provisioning the selenium/chrome driver https://github.com/ultrafunkamsterdam/undetected-chromedriver
+* fake data providers https://github.com/joke2k/faker
+* ...
+
+In the end I passed the bot detectors (_Standing on the shoulders of giants_) and build a pretty simple (IMO) and useful thin layer to speed up my automations:
+
+```python
+import runner
+import step_creator
+import human_delay
+
+import undetected_chromedriver as uc
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from faker import Faker
+
+def main():
+    driver = uc.Chrome()
+
+    random_name = Faker(['en_US', 'pt_BR']).first_name()
+    
+    # I'm using builders to avoid repetition
+    search_element_query, search_element_function = step_creator.create_human_field_filler(random_name + Keys.RETURN, (By.NAME, "q"))
+    list_element_query, list_element_function = step_creator.create_human_fields_click(0, (By.CSS_SELECTOR, ".repo-list-item .v-align-middle"))
+
+    steps = [
+        [f"Search for {random_name}", search_element_query, search_element_function],
+        ["Click on the first item", list_element_query, list_element_function],
+    ]
+
+    # I also create a runner so I can focus only on building the steps
+    runner_instance = runner.Runner(driver, "https://github.com/", steps)
+    runner_instance.run()
+
+    human_delay.delay(3000, 4000) # seconds to take a printscreen
+    driver.get_screenshot_as_file("page.png")
+
+    print('\a') # beebing just for fun
+    print('\a')
+
+if __name__ == "__main__":
+    main()
+```
+
+With that I could finally run my automation 1000 times, randomly spreading the "users" between 30 seconds and 5 minutes.
+
+```bash
+for i in `seq 1 1000`; do sleep $((30+RANDOM % (300-30))) && python3.10 usage.py ; done
+```
 
 I never learn, I'm always reinventing the wheel and then I got bored, search for what I was building to find out 💡 someone did a 1000x better solution than mine 🤡!
+
+PS: if you want to run that on your computer you must have `python3` and `pip3.10 install undetected-chromedriver Faker`, I tested that on my mac.
 
 # The vicious, maybe necessary, think->experiment->do->use loop
 ```mermaid
@@ -110,30 +199,3 @@ graph TD;
     end
     
 ```
-
-# Install
-
-pip3.10 install undetected-chromedriver Faker
-
-# Download the driver within the same version of your running browser
-
-http://chromedriver.storage.googleapis.com/index.html
-
-# Avoid site detection https://stackoverflow.com/questions/33225947/can-a-website-detect-when-you-are-using-selenium-with-chromedriver
-
-https://github.com/ultrafunkamsterdam/undetected-chromedriver
-
-https://bot.sannysoft.com/
-https://bot.incolumitas.com/
-
-https://github.com/soumilshah1995/Preventing-Selenium-from-being-detected/blob/main/master.py
-https://newbedev.com/selenium-webdriver-modifying-navigator-webdriver-flag-to-prevent-selenium-detection
-vim %s/cdc_/lhe_/g
-
-# Run
-
-for i in `seq 1 5`; do sleep $((6+RANDOM % (12-6))) && python3.10 usage.py ; done
-
-# Proxies
-
-curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
