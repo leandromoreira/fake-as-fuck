@@ -141,7 +141,7 @@ I ran proudly my lil' monster and it didn't pass at all 😞! It actually scored
 * https://stackoverflow.com/questions/33225947/can-a-website-detect-when-you-are-using-selenium-with-chromedriver
 * https://github.com/soumilshah1995/Preventing-Selenium-from-being-detected/blob/main/master.py
 * https://newbedev.com/selenium-webdriver-modifying-navigator-webdriver-flag-to-prevent-selenium-detection
-* binary patch `chromedrive` vim %s/cdc_/lhe_/g
+* binary patching the `chromedrive` vim %s/cdc_/lhe_/g
 * and so on.
 
 [The more I see, the less I know](https://youtu.be/yuFI5KSPAt4?t=189)! Long story short, there are solutions (obviously) to aid you in your journey:
