@@ -1,5 +1,6 @@
 import human_delay
 
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.ui import Select
 
@@ -49,3 +50,11 @@ def create_human_accept_alert(query_tuple):
         return last_call_response
 
     return query_tuple, accept_alert
+
+def create_js_human_fields_click(query_tuple):
+    def human_click(driver, last_call_response=None):
+        input_element = driver.find_element(query_tuple[0], query_tuple[1])
+        ActionChains(driver).move_to_element(input_element).click(input_element).perform()
+        return last_call_response
+
+    return query_tuple, human_click
